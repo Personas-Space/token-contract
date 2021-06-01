@@ -1,0 +1,54 @@
+{
+  "name": "personas-charm-token-contract",
+  "version": "0.1.0",
+  "description": "Personas Charm token contract",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.0.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.3.4",
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "ethereum-waffle": "^3.3.0",
+    "ethers": "^5.1.4",
+    "hardhat": "^2.2.1",
+    "husky": "4.3.8",
+    "lint-staged": "^10.5.4",
+    "solc-0.8": "npm:solc@0.8.0",
+    "solidity-docgen": "^0.5.13"
+  },
+  "scripts": {
+    "docs": "npx solidity-docgen --solc-module solc-0.8",
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "lint:test": "eslint ./test/**/*.js --fix",
+    "lint:scripts": "eslint ./scripts/**/*.js --fix",
+    "lint:config": "eslint ./hardhat.config.js .eslintrc.js --fix",
+    "lint": "npm run lint:test && npm run lint:config && npm run lint:scripts",
+    "confirm": "npm run lint && npm run test",
+    "deploy:testnet": "npm run confirm && npx hardhat run --network testnet scripts/deploy.js",
+    "deploy:mainnet": "npm run confirm && npx hardhat run --network mainnet scripts/deploy.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "author": "",
+  "license": "GPL-3.0"
+}
